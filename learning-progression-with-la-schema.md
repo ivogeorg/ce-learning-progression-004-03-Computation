@@ -5,9 +5,6 @@ This is learning progression 004 for the Fall 2020 installment of the course CPE
 Table of Contents
 =================
 
-Table of Contents
-=================
-
 * [CPE 1040 \- Fall 2020](#cpe-1040---fall-2020)
 * [Table of Contents](#table-of-contents)
   * [Learning Progression 004: External LEDs](#learning-progression-004-external-leds)
