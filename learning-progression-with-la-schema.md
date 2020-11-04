@@ -106,7 +106,7 @@ What happens if we shift to the right? Let's see what happens if we shift the nu
 The right shift halves the number. Again, try to prove it in general.
 
 There are two things to note about the right shift:
-1. First, there are two types of right shift, called `[<cept>]`_logical_ and `[<cept>]`_arithmetic_. The logical shift always adds 0s at the left, whereas the arithmetic shift adds `[<cept>]`_sign bits_ at the left. Remember that in 2s complement signed integers, all negative numbers have a 1 for the most significant (that is, the leftmost). The arithmetic right shift would pad the shifted negative number with 1s on the left and would pad the shifted non-negative number with 0s.  
+1. First, there are two types of right shift, called `[<cept>]`_logical_ and `[<cept>]`_arithmetic_. The logical shift always adds 0s at the left, whereas the arithmetic shift adds `[<cept>]`_sign bits_ at the left. Remember that in 2s complement signed integers, all negative numbers have a 1 for the most significant (that is, the leftmost) bit (MSB). The arithmetic right shift would pad the shifted negative number with 1s on the left and would pad the shifted non-negative number with 0s.  
 2. Second, the division by two upon right shift is an `[<cept>]`_integer division_. This means that any fractional part is lost. For example, shifting our last number `00000011` (3<sub>10</sub>) 1 more bit to the right results in `00000001` (1<sub>10</sub>).  
 
 ##### Multiplication
@@ -257,6 +257,8 @@ The multiplication on the second line above, in decimal, is <img src="https://re
 
 7. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** We know that floating-point arithmetic is inexact. Why is the error in a floating-point arithmetic operation is proportional to the `[<cept>]`_absolute difference_ of the two operands (meaning <img src="https://render.githubusercontent.com/render/math?math=|a| - |b|">)?
 
+8. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** Prove that the left shift doubles a number and an arithmetic right shift halves it.  
+
 #### 3. Present
 [[toc](#table-of-contents)]
 
@@ -278,3 +280,4 @@ In the [Lab Notebook](README.md):
 9. Link to the program from 3.2.6.  
 10. Link to a demo video showing the execution of the program from 3.2.6.  
 11. Show your work for 3.2.7 in well-formatted Markdown, including whatever images, tables, or other graphical elements you find necessary.  
+12. Show your work for 3.2.8 in well-formatted Markdown, including whatever images, tables, or other graphical elements you find necessary.  
