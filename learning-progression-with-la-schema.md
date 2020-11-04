@@ -255,7 +255,7 @@ The multiplication on the second line above, in decimal, is <img src="https://re
    2. The function signature should be `mulBin8(a : string[], b : string[], product : string[]) : void`. The parameter `a` will be an array, representing a 16-bit 2s-complement signed integer, in [big-endian](https://www.webopedia.com/TERM/B/big_endian.html) order. So will `b`. The third operand, `product`, will contain the result of the operation, in the same format.  
    3. Pay special attention to transfering the carry between consecutive bytes of the result, while it is being accumulated.  
 
-7. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** We know that floating-point arithmetic is inexact. Why is the error in a floating-point arithmetic operation is proportional to the absolute difference of the two operands?
+7. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** We know that floating-point arithmetic is inexact. Why is the error in a floating-point arithmetic operation is proportional to the `[<cept>]`_absolute difference_ of the two operands (meaning <img src="https://render.githubusercontent.com/render/math?math=|a| - |b|">)?
 
 #### 3. Present
 [[toc](#table-of-contents)]
@@ -277,3 +277,4 @@ In the [Lab Notebook](README.md):
 8. Link to a demo video showing the execution of the program from 3.2.5.  
 9. Link to the program from 3.2.6.  
 10. Link to a demo video showing the execution of the program from 3.2.6.  
+11. Show your work for 3.2.7 in well-formatted Markdown, including whatever images, tables, or other graphical elements you find necessary.  
