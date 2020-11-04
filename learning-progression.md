@@ -61,7 +61,7 @@ Addition is the simplest and most often performed operation in binary. It is als
 ##### Subtraction in 2s complement
 [[toc](#table-of-contents)]
 
-Subtraction `a - b` is performed by the addition `a + twosCompl(b)`. Let's take a look at an example and explain why this works. Remember that 2s complement only makes sense for _fixed-width_ signed integers (usu. 8, 16, 32, 64, or 128 bits). Let's perform the operation 13<sub>10</sub> - 76<sub>10</sub> = 6<sub>10</sub> in 2s complement binary, using 8-bit numbers:
+Subtraction `a - b` is performed by the addition `a + twosCompl(b)`. Let's take a look at an example and explain why this works. Remember that 2s complement only makes sense for _fixed-width_ signed integers (usu. 8, 16, 32, 64, or 128 bits). Let's perform the operation 13<sub>10</sub> - 7<sub>10</sub> = 6<sub>10</sub> in 2s complement binary, using 8-bit numbers:
 ```
    00001101                                                             00001101            
  -                                                                    +
@@ -211,7 +211,7 @@ For example:
 For multiplication and division:  
 1. The exponents are summed or subtracted.  
 2. The non-exponentiated operand multipliers are multiplied or divided.   
-3. The result is broght back to scientific notation.  
+3. The result is brought back to scientific notation.  
 
 For example:  
 <img src="https://render.githubusercontent.com/render/math?math=1.101 * 2^{10} * 1.011 * 2^{9} =">  
