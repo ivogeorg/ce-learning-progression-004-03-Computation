@@ -91,49 +91,66 @@ Adding and subtracting the same number to an algebraic expression doesn’t chan
 ##### Shifting   
 [[toc](#table-of-contents)]
 
-1. Logical shift.  
-2. Arithmetic shift.  
-   - Right shift preserves sign.  
+Shifting is a simple but key operation in binary arithmetic. It involves moving bits left or right in their original order. For example, shifting the number `00000110` to the left by 1 position results in `00001100`. Notice that we dropped a 0 on the left and added a 0 on the right. How are the two numbers related? Let's see:  
+00000110<sub>2</sub> = 6<sub>10</sub>, and  
+00001100<sub>2</sub> = 12<sub>10</sub>.  
+
+Indeed, a left shift doubles the number. Try it with some other numbers and then prove it in general (e.g. by examining the relation of the sums of powers of the base of the two numbers).  
+
+Notice that the left shift can _overflow_ if the number that is dropped on the left is a 1. For example, shifting the number `10000000` (128<sub>10</sub>) to the left by 1 bit results in `0000000` (zero).  
+
+What happens if we shift to the right? Let's see what happens if we shift the number `00000110` to the right by 1 position, which results in `00000011`:  
+00000110<sub>2</sub> = 6<sub>10</sub>, and  
+00000011<sub>2</sub> = 3<sub>10</sub>.  
+
+The right shift halves the number. Again, try to prove it in general.
+
+There are two things to note about the right shift:
+1. First, there are two types of right shift, called `[<cept>]`_logical_ and `[<cept>]`_arithmetic_. The logical shift always adds 0s at the left, whereas the arithmetic shift adds `[<cept>]`_sign bits_ at the left. Remember that in 2s complement signed integers, all negative numbers have a 1 for the most significant (that is, the leftmost). The arithmetic right shift would pad the shifted negative number with 1s on the left and would pad the shifted non-negative number with 0s.  
+2. Second, the division by two upon right shift is an `[<cept>]`_integer division_. This means that any fractional part is lost. For example, shifting our last number `00000011` (3<sub>10</sub>) 1 more bit to the right results in `00000001` (1<sub>10</sub>).  
 
 ##### Multiplication
 [[toc](#table-of-contents)]
 
-Addition & shift  
+Multiplication is just addition and shifting. Let's look at a few examples:  
 2 2-bit numbers as an example  
 ```
    10 * 11
    -------
         10
-   +   10|
+   +   10<
    -------
        110
 ```
-
+We are multiplying the left multiplicand by the bits of the right one, shifting the result to the left each time. The shift is indicated by a `<`. Let's try larger numbers and commute the multiplication (change the order of the operands):   
 ```
    101 * 10101
    -----------
            101
-            0|
-   +     101||
-          0|||
-       101||||
+            0<
+   +     101<<
+          0<<<
+       101<<<<
    -----------
        1101001
 ```
-
+and  
 ```
    10101 * 101
    -----------
          10101
-   +        0|
-       10101||
+   +        0<
+       10101<<
    -----------
        1101001
 ```
+Of course, the result is the same, but we did more shifting in the first version.  Let's look at the second version in a table to show the order of operations:
+
 
 **TODO: Table (needed as example for 3.2.4)**  
 
 ##### Floating point arithmetic
+[[toc](#table-of-contents)]
 
 **TODO** Explain the fractional (half, quarter, eighth, sixteenth, etc.).
 **TODO** Scientific notation! Show in decimal and binary
