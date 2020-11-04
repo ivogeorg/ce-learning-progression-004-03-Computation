@@ -2,7 +2,20 @@
 
 This is learning progression 004 for the Fall 2020 installment of the course CPE 1040: Introduction to Computer Engineering at MSU Denver.
 
+Table of Contents
+=================
 
+* [CPE 1040 \- Fall 2020](#cpe-1040---fall-2020)
+  * [Learning Progression 004: External LEDs](#learning-progression-004-external-leds)
+    * [Step 3: Computation](#step-3-computation)
+      * [1\. Study](#1-study)
+        * [Addition](#addition)
+        * [Subtraction in 2s complement](#subtraction-in-2s-complement)
+        * [Shifting](#shifting)
+        * [Multiplication](#multiplication)
+        * [Floating point arithmetic](#floating-point-arithmetic)
+      * [2\. Apply](#2-apply)
+      * [3\. Present](#3-present)
 
 ## Learning Progression 004: External LEDs
 
