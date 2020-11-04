@@ -86,7 +86,7 @@ Let's verify this in decimal and show what we actually did:
 <img src="https://render.githubusercontent.com/render/math?math=272_{10} - 256_{10} =">  
 <img src="https://render.githubusercontent.com/render/math?math=6_{10}">  
 
-Adding and subtracting the same number to an algebraic expression doesn’t change its value. If our bitwidth is **n**, we add and subtract **2<sup>n</sup>** to the subtraction expression, use the positive power of 2 to convert the subtrahend to 2s complement, perform an addition with the minuend, and finally subtract (drop) the remaining negative power of 2 by silent overflow. So, subtraction is done essentially by addition. The name **2s complement** comes from the fact that the original subtrahend and its 2s complement add up (complement each other) to the **n-th power of 2**.
+Adding and subtracting the same number to an algebraic expression doesn’t change its value. If our bit-width is **n**, we add and subtract **2<sup>n</sup>** to the subtraction expression, use the positive power of 2 to convert the subtrahend to 2s complement, perform an addition with the minuend, and finally subtract (drop) the remaining negative power of 2 by silent overflow. So, subtraction is done essentially by addition. The name **2s complement** comes from the fact that the original subtrahend and its 2s complement add up (complement each other) to the **n-th power of 2**.
 
 ##### Shifting   
 [[toc](#table-of-contents)]
@@ -112,8 +112,7 @@ There are two things to note about the right shift:
 ##### Multiplication
 [[toc](#table-of-contents)]
 
-Multiplication is just addition and shifting. Let's look at a few examples:  
-2 2-bit numbers as an example  
+Multiplication is just addition and shifting. Let's look at an example:  
 ```
    10 * 11
    -------
@@ -122,7 +121,7 @@ Multiplication is just addition and shifting. Let's look at a few examples:
    -------
        110
 ```
-We are multiplying the left multiplicand by the bits of the right one, shifting the result to the left each time. The shift is indicated by a `<`. Let's try larger numbers and commute the multiplication (change the order of the operands):   
+We are multiplying the left multiplicand by the bits of the right one, shifting the result to the left each time. The shift is indicated by a `<`. Let's try larger numbers and commute the multiplication (meaning change the order of the operands) to double check:   
 ```
    101 * 10101
    -----------
@@ -155,7 +154,7 @@ Shift left the left operand by 1 bit | `1010100` | **`1`**`01` | `00010101`
 Add left operand to accumulator | `1010100` | **`1`**`01` | `01101001`
 
 Notice two things:
-1. The accumulator is as long as the two multiplicative operands combined.  
+1. The accumulator is as wide as the two multiplicative operands combined.  
 2. Whenever there is a 0 bit in the right operand, there is just a left shift of the left operand; whenever there is a 1 bit in the right operand, there is a left shift of the left operand and addition of the left operand to the accumulator.  
 
 But how can we get the correct bit of the right operand? We right shift it and `[<cept>]`_mask out_ all but the `[<cept>]`_least significant bit (LSB)_ (meaning the rightmost). Let's recall the logical function and operation AND:
@@ -255,9 +254,9 @@ The multiplication on the second line above, in decimal, is <img src="https://re
    2. The function signature should be `mulBin8(a : string[], b : string[], product : string[]) : void`. The parameter `a` will be an array, representing a 16-bit 2s-complement signed integer, in [big-endian](https://www.webopedia.com/TERM/B/big_endian.html) order. So will `b`. The third operand, `product`, will contain the result of the operation, in the same format.  
    3. Pay special attention to transfering the carry between consecutive bytes of the result, while it is being accumulated.  
 
-7. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** We know that floating-point arithmetic is inexact. Why is the error in a floating-point arithmetic operation is proportional to the `[<cept>]`_absolute difference_ of the two operands (meaning <img src="https://render.githubusercontent.com/render/math?math=|a| - |b|">)?
+7. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** We know that floating-point arithmetic is inexact. Why is the error in a floating-point arithmetic operation proportional to the `[<cept>]`[_absolute difference_](https://en.wikipedia.org/wiki/Absolute_difference) of the two operands (meaning <img src="https://render.githubusercontent.com/render/math?math=|a - b|">)?
 
-8. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** Prove that the left shift doubles a number and an arithmetic right shift halves it.  
+8. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** Prove that the left shift doubles an integer (bar overflow) and an arithmetic right shift halves it (bar loss of the fractional part).  
 
 #### 3. Present
 [[toc](#table-of-contents)]
