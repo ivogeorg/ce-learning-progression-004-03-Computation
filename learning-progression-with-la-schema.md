@@ -140,17 +140,6 @@ Addition & shift
 **TODO** Explain the fractional (half, quarter, eighth, sixteenth, etc.).
 **TODO** Scientific notation! Show in decimal and binary
 
-##### Instruction set architecture
-[[toc](#table-of-contents)]
-
-The most basic _operations_ the processor executes. Note that operations are a very high abstraction level relative to electric signals and bit-states, which are part of the physical hardware of the computing device, and thus, the hardware stack. At the same time, operations are the _lowest abstraction level_ in the software stack. This is where the hardware and software stack intersect.
-
-##### Registers
-[[toc](#table-of-contents)]
-
-Small number of very fast memory locations, deep inside the processor, used in the execution of the processor's instructions. They hold instructions, operands, results, and control state.
-
-
 #### 2. Apply
 [[toc](#table-of-contents)]
 
@@ -174,7 +163,7 @@ Small number of very fast memory locations, deep inside the processor, used in t
       3. 1<sub>2</sub> * 1<sub>2</sub> = 1<sub>2</sub>.  
    4. How would you modify, if necessary, the function to work with 2s-complement signed integers?  
 6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** Multiplication of two 16-bit numbers on an 8-bit processor. In particular:
-   1. Modify the function from the previous task to work _with 8-bit registers only_. That is, assume that you your operands, intermediate values, and results cannot exceed 8-bit units, and numbers requiring more bits are broken down and stored in arrays of 8-bit number strings.      
+   1. Modify the function from the previous task to work _with 8-bit registers only_. That is, assume that you your operands, intermediate values, and results cannot exceed 8-bit units, and numbers requiring more bits are broken down and stored in arrays of 8-bit number strings. `[<cept>]`_Registers_ are a small number of very fast memory locations, deep inside the processor, used in the execution of the processor's instructions. They hold instructions, operands, results, and control state.  
    2. The function signature should be `mulBin8(a : string[], b : string[], product : string[]) : void`. The parameter `a` will be an array, representing a 16-bit 2s-complement signed integer, in [big-endian](https://www.webopedia.com/TERM/B/big_endian.html) order. So will `b`. The third operand, `product`, will contain the result of the operation, in the same format.  
    3. Pay special attention to transfering the carry between consecutive bytes of the result, while it is being accumulated.  
 
