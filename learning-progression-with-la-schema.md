@@ -185,18 +185,54 @@ Mask out LSB of right multiplicand (AND with `001`) | `010` | `000` | Left shift
 Shift right the right multiplicand by 1 bit         | `010` | `001` |_none_
 Mask out LSB of right multiplicand (AND with `001`) | `001` | `001` | Left shift and add to accumulator
 
-
-
 ##### Floating point arithmetic
 [[toc](#table-of-contents)]
 
+Floating-point arithmetic is not difficult to understand, but requires specialized hardware to do fast. For example, the current version of the micro:bit (v1.5) does not have specialized hardware to do floating-point arithmetic, but the new version (v2) does. 
+
+First, let's get some intuition about the `[<cept>]`_significand_ (meaning the fractional part of the floating-point number). Here's the interpretation of the number `0.1011`:
+
+Symbol | `0` | `.` | `1` | `0` | `1` | `1`
+--- | :-: | :-: | :-: | :-: | :-: | :-:
+Power of the base 2 | 1 | n/a | -1 | -2 | -3 | -4
+Interpretation | Zero whole number | Fractional point | 1 half | 0 quarter | 1 eight | 1 sixteenth
+
+Remember that the IEEE 754 floating-point standard utilized the `[<cept>]`_scientific notation_. The floating-point addition and subtraction operations consist of 3 steps:
+1. Shift the two numbers so that you arrive at equal exponents.  
+2. Perform the operation on the two non-exponentiated operand multipliers.  
+3. Bring the result back to scientific notation.  
+
+For example:  
+<img src="https://render.githubusercontent.com/render/math?math=1.101 * 2^{10} %2B 1.011 * 2^{9} =">  
+<img src="https://render.githubusercontent.com/render/math?math=1.101 * 2^{10} %2B 0.1011 * 2^{10} =">  
+<img src="https://render.githubusercontent.com/render/math?math=1.101 * 2^{10} %2B 0.1011 * 2^{10} =">  
+<img src="https://render.githubusercontent.com/render/math?math=10.0101 * 2^{10} =">  
+<img src="https://render.githubusercontent.com/render/math?math=1.00101 * 2^{9} =">  
+
 **TODO** Explain the fractional (half, quarter, eighth, sixteenth, etc.).
 **TODO** Scientific notation! Show in decimal and binary
+
+For multiplication and division:
+1. The exponents are summed or subtracted.  
+2. The non-exponentiated operand multipliers are multiplied or divided.  
+3. The result is broght back to scientific notation.
+
+For example:
+<img src="https://render.githubusercontent.com/render/math?math=1.101 * 2^{10} * 1.011 * 2^{9} =">  
+<img src="https://render.githubusercontent.com/render/math?math=(1.101 * 1.011) * 2^{19} =">  
+<img src="https://render.githubusercontent.com/render/math?math=(1.101 * 1.011) * 2^{19} =">  
+```
+1.101 * 1.011
+-------------
+
+```
+
 
 #### 2. Apply
 [[toc](#table-of-contents)]
 
 1. `[<lernact-prac>]`Perform _manually_ the operation <img src="https://render.githubusercontent.com/render/math?math=101_{10} - 37_{10}"> in decimal and 2s-complement binary. Show that the results match.    
+
 2. `[<lernact-prac>]`Write a function `addBin(a : string, b : string) : string` to add two binary unsigned integer strings (e.g. `0b00011` and `0b110`) and output (that is, `return`) the result in the same format. Perform the operation `[<cept>]`_bitwise_ and do not convert to and from decimal. Hints and guidelines:
    1. Assume you have unbounded bit width. That is, do not worry about overflow.  
    2. Make sure you align the two strings properly. You might want to `[<cept>]`_pad_ the shorter string, if there is one, before performing the operation.  
@@ -205,8 +241,11 @@ Mask out LSB of right multiplicand (AND with `001`) | `001` | `001` | Left shift
       2. 0<sub>2</sub> + 1<sub>2</sub> = 1<sub>2</sub> and no carry.  
       3. 1<sub>2</sub> + 0<sub>2</sub> = 1<sub>2</sub> and no carry.  
       4. 1<sub>2</sub> + 1<sub>2</sub> = 0<sub>2</sub> and carry of 1<sub>2</sub>.  
+
 3. `[<lernact-prac>]`Perform _manually_ the operation <img src="https://render.githubusercontent.com/render/math?math=01010110_{2} * 10_{2}"> in binary. Show that it is equivalent to a shift. Specify the type (that is, _direction_ and _bit-distance_) of the shift.  
+
 4. `[<lernact-prac>]`Perform the multiplication of two 3-bit numbers, `0b110` and `0b101`, in a table showing each step.    
+
 5. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** Write a function `mulBin(a : string, b : string) : string` to multiply two binary unsigned integer strings (e.g. `0b00011` and `0b110`) and output (that is, `return`) the result in the same format. Perform the operation bitwise and do not convert to and from decimal. Hints and guidelines:
    1. Assume you have 8-bit inputs and you have sufficient output bits. _What is the maximum output bit width of the product of two 8-bit unsigned integers?_  
    2. Make sure you advance your `[<cept>]`_operands_ and `[<cept>]`_accumulator_ properly.    
@@ -215,10 +254,13 @@ Mask out LSB of right multiplicand (AND with `001`) | `001` | `001` | Left shift
       2. 0<sub>2</sub> * 1<sub>2</sub> = 0<sub>2</sub>.  
       3. 1<sub>2</sub> * 1<sub>2</sub> = 1<sub>2</sub>.  
    4. How would you modify, if necessary, the function to work with 2s-complement signed integers?  
+
 6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** Multiplication of two 16-bit numbers on an 8-bit processor. In particular:
    1. Modify the function from the previous task to work _with 8-bit registers only_. That is, assume that you your operands, intermediate values, and results cannot exceed 8-bit units, and numbers requiring more bits are broken down and stored in arrays of 8-bit number strings. `[<cept>]`_Registers_ are a small number of very fast memory locations, deep inside the processor, used in the execution of the processor's instructions. They hold instructions, operands, results, and control state.  
    2. The function signature should be `mulBin8(a : string[], b : string[], product : string[]) : void`. The parameter `a` will be an array, representing a 16-bit 2s-complement signed integer, in [big-endian](https://www.webopedia.com/TERM/B/big_endian.html) order. So will `b`. The third operand, `product`, will contain the result of the operation, in the same format.  
    3. Pay special attention to transfering the carry between consecutive bytes of the result, while it is being accumulated.  
+
+7. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** We know that floating-point arithmetic is inexact. Why is the error in a floating-point arithmetic operation is proportional to the absolute difference of the two operands?
 
 #### 3. Present
 [[toc](#table-of-contents)]
