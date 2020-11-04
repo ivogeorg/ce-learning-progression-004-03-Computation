@@ -61,7 +61,7 @@ Addition is the simplest and most often performed operation in binary. It is als
 ##### Subtraction in 2s complement
 [[toc](#table-of-contents)]
 
-Subtraction `a - b` is performed by the addition `a + twosCompl(b)`. Let's take a look at an example and explain why this works. Remember that 2s complement only makes sense for _fixed-width_ signed integers (usu. 8, 16, 32, 64, or 128 bits). Let's perform the operation 13<sub>10</sub> - 76<sub>10</sub> = 6<sub>10</sub> in 2s complement binary, using 8-bit numbers:
+Subtraction `a - b` is performed by the addition `a + twosCompl(b)`. Let's take a look at an example and explain why this works. Remember that 2s complement only makes sense for _fixed-width_ signed integers (usu. 8, 16, 32, 64, or 128 bits). Let's perform the operation 13<sub>10</sub> - 7<sub>10</sub> = 6<sub>10</sub> in 2s complement binary, using 8-bit numbers:
 ```
    00001101                                                             00001101            
  -                                                                    +
@@ -211,7 +211,7 @@ For example:
 For multiplication and division:  
 1. The exponents are summed or subtracted.  
 2. The non-exponentiated operand multipliers are multiplied or divided.   
-3. The result is broght back to scientific notation.  
+3. The result is brought back to scientific notation.  
 
 For example:  
 <img src="https://render.githubusercontent.com/render/math?math=1.101 * 2^{10} * 1.011 * 2^{9} =">  
@@ -254,7 +254,7 @@ The multiplication on the second line above, in decimal, is <img src="https://re
    2. The function signature should be `mulBin8(a : string[], b : string[], product : string[]) : void`. The parameter `a` will be an array, representing a 16-bit 2s-complement signed integer, in [big-endian](https://www.webopedia.com/TERM/B/big_endian.html) order. So will `b`. The third operand, `product`, will contain the result of the operation, in the same format.  
    3. Pay special attention to transfering the carry between consecutive bytes of the result, while it is being accumulated.  
 
-7. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** We know that floating-point arithmetic is inexact. Why is the error in a floating-point arithmetic operation proportional to the `[<cept>]`[_absolute difference_](https://en.wikipedia.org/wiki/Absolute_difference) of the two operands (meaning <img src="https://render.githubusercontent.com/render/math?math=|a - b|">)?
+7. `[<lernact-disc>]`**[Optional challenge, max 10 extra step points]** We know that floating-point arithmetic is inexact. Why is the error in a floating-point arithmetic operation proportional to the `[<cept>]`[_absolute difference_](https://en.wikipedia.org/wiki/Absolute_difference) of the two operands (meaning <img src="https://render.githubusercontent.com/render/math?math=|a - b|">)?
 
 8. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** Prove that the left shift doubles an integer (bar overflow) and an arithmetic right shift halves it (bar loss of the fractional part).  
 
