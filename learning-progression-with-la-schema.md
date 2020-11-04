@@ -207,25 +207,20 @@ For example:
 <img src="https://render.githubusercontent.com/render/math?math=1.101 * 2^{10} %2B 0.1011 * 2^{10} =">  
 <img src="https://render.githubusercontent.com/render/math?math=1.101 * 2^{10} %2B 0.1011 * 2^{10} =">  
 <img src="https://render.githubusercontent.com/render/math?math=10.0101 * 2^{10} =">  
-<img src="https://render.githubusercontent.com/render/math?math=1.00101 * 2^{9} =">  
+<img src="https://render.githubusercontent.com/render/math?math=1.00101 * 2^{9}">  
 
-**TODO** Explain the fractional (half, quarter, eighth, sixteenth, etc.).
-**TODO** Scientific notation! Show in decimal and binary
-
-For multiplication and division:
+For multiplication and division:  
 1. The exponents are summed or subtracted.  
-2. The non-exponentiated operand multipliers are multiplied or divided.  
-3. The result is broght back to scientific notation.
+2. The non-exponentiated operand multipliers are multiplied or divided.   
+3. The result is broght back to scientific notation.  
 
-For example:
+For example:  
 <img src="https://render.githubusercontent.com/render/math?math=1.101 * 2^{10} * 1.011 * 2^{9} =">  
 <img src="https://render.githubusercontent.com/render/math?math=(1.101 * 1.011) * 2^{19} =">  
-<img src="https://render.githubusercontent.com/render/math?math=(1.101 * 1.011) * 2^{19} =">  
-```
-1.101 * 1.011
--------------
+<img src="https://render.githubusercontent.com/render/math?math=10.001111 * 2^{19} =">  
+<img src="https://render.githubusercontent.com/render/math?math=1.0001111 * 2^{20}">  
 
-```
+The multiplication on the second line above, in decimal, is <img src="https://render.githubusercontent.com/render/math?math=1.625 * 1.375 = 2.234375">.   
 
 
 #### 2. Apply
