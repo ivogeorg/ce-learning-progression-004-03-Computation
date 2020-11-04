@@ -146,8 +146,46 @@ and
 ```
 Of course, the result is the same, but we did more shifting in the first version.  Let's look at the second version in a table to show the order of operations:
 
+Operation | Left operand | Right operand bit | Accumulator result
+--- | --: | --: | --:
+Start | `10101` | `10`**`1`** | `00000000`
+Add left operand to accumulator |  `10101` | `10`**`1`** | `00010101`
+Shift left the left operand by 1 bit | `101010` | `1`**`0`**`1` | `00010101`
+Shift left the left operand by 1 bit | `1010100` | **`1`**`01` | `00010101`
+Add left operand to accumulator | `1010100` | **`1`**`01` | `01101001`
 
-**TODO: Table (needed as example for 3.2.4)**  
+Notice two things:
+1. The accumulator is as long as the two multiplicative operands combined.  
+2. Whenever there is a 0 bit in the right operand, there is just a left shift of the left operand; whenever there is a 1 bit in the right operand, there is a left shift of the left operand and addition of the left operand to the accumulator.  
+
+But how can we get the correct bit of the right operand? We right shift it and `[<cept>]`_mask out_ all but the `[<cept>]`_least significant bit (LSB)_ (meaning the rightmost). Let's recall the logical function and operation AND:
+
+a | b | a AND b
+--- | --- | ---
+0 | 0 | 0
+0 | 1 | 0
+1 | 0 | 0
+1 | 1 | 1
+
+AND is 1 only when **both** operands are 1. Now, let's see what that operation does when we apply it to the right operand:  
+```
+      101
+AND
+      001
+---------
+      001
+```
+The second operand of the AND operation is called a `[<cept>]`_mask_, because it masks out all but the bit of interest, which happens to be 1 in this case. Let's see how this works along with a right shift of the first operand (which is the right multiplicand from the above multiplication example):
+
+Operation | Right multiplicand | Result from operation | Corresponding operations on left multiplicand
+--- | --: | --: | ---
+Mask out LSB of right multiplicand (AND with `001`) | `101` | `001` | Left shift and add to accumulator
+Shift right the right multiplicand by 1 bit         | `101` | `010` | _none_
+Mask out LSB of right multiplicand (AND with `001`) | `010` | `000` | Left shift
+Shift right the right multiplicand by 1 bit         | `010` | `001` |_none_
+Mask out LSB of right multiplicand (AND with `001`) | `001` | `001` | Left shift and add to accumulator
+
+
 
 ##### Floating point arithmetic
 [[toc](#table-of-contents)]
