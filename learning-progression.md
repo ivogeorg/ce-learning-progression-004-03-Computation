@@ -193,7 +193,7 @@ First, let's get some intuition about the _significand_ (meaning the fractional 
 
 Symbol | `0` | `.` | `1` | `0` | `1` | `1`
 --- | :-: | :-: | :-: | :-: | :-: | :-:
-Power of the base 2 | 1 | n/a | -1 | -2 | -3 | -4
+Power of the base 2 (aka exponent) | 0 | n/a | -1 | -2 | -3 | -4
 Interpretation | Zero whole number | Fractional point | 1 half | 0 quarter | 1 eight | 1 sixteenth
 
 Remember that the IEEE 754 floating-point standard utilized the _scientific notation_. The floating-point addition and subtraction operations consist of 3 steps:
